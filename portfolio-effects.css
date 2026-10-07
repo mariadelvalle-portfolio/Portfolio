@@ -1,0 +1,33 @@
+/* A quiet editorial light, keeping the work itself in the foreground. */
+.portfolio-cover {
+  isolation: isolate;
+  overflow: hidden;
+}
+.portfolio-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at var(--light-x, 50%) var(--light-y, 45%), rgba(255, 249, 235, .42), transparent 65%);
+}
+@keyframes portfolio-title-enter {
+  from { opacity: 0; transform: translateY(24px); filter: blur(5px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .portfolio-cover [data-hero] > div {
+    animation: portfolio-title-enter 1.6s cubic-bezier(.2,.7,.2,1) both;
+  }
+}
+a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 6px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  body *, body *::before, body *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
