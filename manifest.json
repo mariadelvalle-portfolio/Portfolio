@@ -1,0 +1,17 @@
+{
+  "name": "María del Valle Pescetti | Diseñadora gráfica",
+  "short_name": "María del Valle",
+  "description": "Portfolio de María del Valle Pescetti, diseñadora gráfica especializada en identidad, contenido y comunicación visual.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#E6E2DE",
+  "theme_color": "#2C1917",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

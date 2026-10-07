@@ -5,3 +5,4 @@
 # Cloudflare Tunnel credentials
 *.json
 *.pem
+!manifest.json
