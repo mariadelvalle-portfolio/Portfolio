@@ -1,0 +1,7 @@
+.env
+.env.*
+!.env.example
+
+# Cloudflare Tunnel credentials
+*.json
+*.pem

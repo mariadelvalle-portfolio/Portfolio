@@ -1,0 +1,69 @@
+services:
+  nginx:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    expose:
+      - "80"
+    volumes:
+      - ./:/usr/share/nginx/html:ro
+    networks:
+      - web
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://127.0.0.1/ || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  updater:
+    image: alpine/git:2.49.1
+    restart: unless-stopped
+    user: "${LOCAL_UID:-1000}:${LOCAL_GID:-1000}"
+    working_dir: /workspace
+    environment:
+      UPDATE_INTERVAL_SECONDS: ${UPDATE_INTERVAL_SECONDS:-300}
+      GIT_FETCH_URL: ${GIT_FETCH_URL:-https://github.com/mariadelvalle-portfolio/Portfolio.git}
+    volumes:
+      - ./:/workspace
+    entrypoint: ["/bin/sh"]
+    command:
+      - -c
+      - |
+        set -eu
+        while true; do
+          if git fetch "$$GIT_FETCH_URL" main:refs/remotes/origin/main; then
+            local_commit=$$(git rev-parse main)
+            remote_commit=$$(git rev-parse origin/main)
+            if [ "$$local_commit" = "$$remote_commit" ]; then
+              echo "Repository already up to date at $$local_commit"
+            elif git merge-base --is-ancestor "$$local_commit" "$$remote_commit"; then
+              if git diff --quiet && git diff --cached --quiet; then
+                git merge --ff-only origin/main
+                echo "Repository updated to $$remote_commit"
+              else
+                echo "Local tracked changes detected; update skipped"
+              fi
+            else
+              echo "Local branch is ahead or diverged; update skipped"
+            fi
+          else
+            echo "Unable to fetch origin/main; retrying later"
+          fi
+          sleep "$$UPDATE_INTERVAL_SECONDS"
+        done
+    networks:
+      - web
+
+  cloudflared:
+    image: cloudflare/cloudflared:2026.8.2
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN:?Set CLOUDFLARE_TUNNEL_TOKEN in .env or the shell environment}
+    depends_on:
+      nginx:
+        condition: service_healthy
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge
