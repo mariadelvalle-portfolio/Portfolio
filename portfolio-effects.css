@@ -2,6 +2,42 @@
 .portfolio-cover {
   isolation: isolate;
   overflow: hidden;
+  min-height: 100vh;
+  min-height: 100svh;
+  row-gap: 32px;
+}
+.portfolio-cover [data-hero] {
+  min-width: 0;
+  container-type: inline-size;
+}
+.portfolio-title {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 200;
+  font-size: min(143px, 14vw);
+  font-size: min(143px, 16cqw);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.portfolio-cover-header {
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+.portfolio-cover-header > span,
+.portfolio-cover [data-scrollhint] {
+  flex-shrink: 0;
+}
+@media (max-width: 600px) {
+  .portfolio-cover-header,
+  .portfolio-cover-footer {
+    font-size: 10px !important;
+    line-height: 1.6;
+  }
+  .portfolio-cover-footer {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
 }
 .portfolio-cover::before {
   content: "";

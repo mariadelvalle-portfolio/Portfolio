@@ -9,7 +9,7 @@
 <meta name="theme-color" content="#2C1917">
 <link rel="canonical" href="https://mariadelvalle.work/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="portfolio-effects.css">
+<link rel="stylesheet" href="portfolio-effects.css?v=20261007-responsive">
 <script src="portfolio-effects.js" defer></script>
 <script defer src="https://mariadelvalle.work/analytics/script.js" data-website-id="9bff8383-9d93-4e1e-a158-c5a337184bc4" data-host-url="https://mariadelvalle.work/analytics" data-domains="mariadelvalle.work,www.mariadelvalle.work" data-do-not-track="true" data-exclude-search="true"></script>
 <link rel="manifest" href="manifest.json">
@@ -64,7 +64,6 @@
     [style*="grid-column"] { grid-column: auto !important; margin-top: 0 !important; }
     #coolinary figure { margin-top: 0 !important; }
     [style*="px 40px"], [style*="0 40px"] { padding-left: 22px !important; padding-right: 22px !important; }
-    [data-hero] span { font-size: 23vw !important; }
     #sobre > div:first-child { min-height: 78vh; }
     #sobre > div:last-child { padding: 56px 22px !important; }
     #sobre h2 { font-size: 44px !important; }
@@ -111,17 +110,17 @@ var n=img.__q.shift();if(n)img.src=n.split('/').map(encodeURIComponent).join('/'
 <body>
 <div style="background:#E6E2DE;font-family:'Raleway',sans-serif;font-weight:300;overflow-x:hidden">
 
-  <section class="portfolio-cover" style="position: relative; height: 100vh; display: grid; grid-template-rows: auto 1fr auto; padding: 32px 40px 28px; box-sizing: border-box; background-color: #C3BAB1">
-    <div style="display:flex;justify-content:space-between;align-items:start;font-size:12px;letter-spacing:0.32em;text-transform:uppercase;color:#2C1917">
+  <section class="portfolio-cover" style="position: relative; display: grid; grid-template-rows: auto 1fr auto; padding: 32px 40px 28px; box-sizing: border-box; background-color: #C3BAB1">
+    <div class="portfolio-cover-header" style="display:flex;justify-content:space-between;align-items:start;font-size:12px;letter-spacing:0.32em;text-transform:uppercase;color:#2C1917">
       <span>María del Valle</span>
       <span>Valencia · 2026</span>
     </div>
     <div data-hero="" style="display:flex;align-items:center;justify-content:center;will-change:transform,opacity">
       <div style="display:flex;align-items:baseline;justify-content:center;line-height:0.82;color:#2C1917">
-        <span style="font-family: Poppins; font-weight: 200; font-stretch: 62.5%; font-size: 143px; letter-spacing: 0.01em; font-style: normal">PORTFOLIO</span>
+        <h1 class="portfolio-title">PORTFOLIO</h1>
       </div>
     </div>
-    <div style="display:flex;justify-content:space-between;align-items:end;gap:24px;font-size:12px;letter-spacing:0.26em;text-transform:uppercase;color:#2C1917">
+    <div class="portfolio-cover-footer" style="display:flex;justify-content:space-between;align-items:end;gap:24px;font-size:12px;letter-spacing:0.26em;text-transform:uppercase;color:#2C1917">
        <span>Diseñadora gráfica · Dirección de arte · Valencia</span>
       <span data-scrollhint="" style="display:flex;align-items:center;gap:10px">Scroll <span style="display:inline-block;width:44px;height:1px;background:#6B5A54"></span></span>
     </div>
